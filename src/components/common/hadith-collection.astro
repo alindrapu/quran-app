@@ -1,0 +1,26 @@
+---
+import { Button } from "../ui/button";
+
+const { name } = Astro.props;
+---
+
+<article
+  class="group cursor-pointer bg-card hover:bg-accent/50 border border-border rounded-lg p-6 transition-all duration-200 hover:shadow-md"
+  id={`hadith-${name}`}
+>
+  <div class="text-center">
+    <h3
+      class="text-xl font-bold text-foreground group-hover:text-primary transition-colors mb-2 capitalize"
+    >
+      {name.replaceAll("-", " ")}
+    </h3>
+    <Button
+      variant="link"
+      size="lg"
+      className="text-2xl font-arabic text-foreground mb-3"
+      dir="rtl"
+    >
+      <a class="inline-block" href={`/hadith/${name}`}> Lihat Hadith </a>
+    </Button>
+  </div>
+</article>

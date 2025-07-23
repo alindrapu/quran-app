@@ -1,0 +1,29 @@
+---
+import HadithCollection from "@/components/common/hadith-collection.astro";
+import Layout from "@/components/layouts/main.astro";
+import { HADITH_DATAS } from "@/constants/hadith";
+---
+
+<Layout
+  title="Hadith – Koleksi Utama"
+  description="Koleksi hadith shahih dengan terjemahan"
+  className=" py-8 px-4 sm:px-6 lg:px-8"
+>
+  <section class="container mx-auto">
+    <hgroup class="mb-8 text-center">
+      <h1 class="text-3xl font-bold text-foreground mb-2">Koleksi Hadith</h1>
+      <p class="text-muted-foreground">
+        Kitab hadist paling otoritatif dan koleksi penting lainnya.
+      </p>
+    </hgroup>
+
+    <!-- Collections -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {
+        Object.keys(HADITH_DATAS).map((name) => (
+          <HadithCollection name={name} />
+        ))
+      }
+    </div>
+  </section>
+</Layout>

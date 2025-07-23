@@ -1,0 +1,181 @@
+---
+import "../styles/global.css";
+import Layout from "@/components/layouts/main.astro";
+
+// Full Astro Component Syntax:
+// https://docs.astro.build/basics/astro-components/
+---
+
+<Layout title="Astro + TailwindCSS">
+  <section class="py-20 px-4 sm:px-6 lg:px-8">
+    <div class="container mx-auto text-center">
+      <h1 class="text-4xl md:text-6xl font-bold text-foreground mb-6">
+        Al-Quran & Hadith
+      </h1>
+      <p class="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+        Baca dan pelajari Al-Quran dan Hadith dengan mudah. Dilengkapi dengan
+        terjemahan dan tafsir dalam bahasa Indonesia.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href="/quran"
+          class="inline-flex items-center justify-center px-8 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors"
+        >
+          Baca Al-Quran
+        </a>
+        <a
+          href="/hadith"
+          class="inline-flex items-center justify-center px-8 py-3 border border-border rounded-lg font-medium hover:bg-accent transition-colors"
+        >
+          Baca Hadith
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="py-16 px-4 sm:px-6 lg:px-8 bg-muted/50">
+    <div class="container mx-auto">
+      <h2 class="text-3xl font-bold text-center text-foreground mb-12">
+        Fitur Utama
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="text-center">
+          <div
+            class="w-16 h-16 bg-primary/10 border border-primary/20 rounded-lg flex items-center justify-center mx-auto mb-4"
+          >
+            <svg
+              class="w-8 h-8 text-primary"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M12 2L2 7v10c0 5.55 3.84 9.739 9 11 5.16-1.261 9-5.45 9-11V7l-10-5z"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-foreground mb-2">
+            Al-Quran Lengkap
+          </h3>
+          <p class="text-muted-foreground">
+            30 Juz, 114 Surah dengan terjemahan dan tafsir bahasa Indonesia
+          </p>
+        </div>
+
+        <div class="text-center">
+          <div
+            class="w-16 h-16 bg-primary/10 border border-primary/20 rounded-lg flex items-center justify-center mx-auto mb-4"
+          >
+            <svg
+              class="w-8 h-8 text-primary"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-foreground mb-2">
+            Hadith Shahih
+          </h3>
+          <p class="text-muted-foreground">
+            Koleksi hadith shahih dengan terjemahan yang akurat
+          </p>
+        </div>
+
+        <div class="text-center">
+          <div
+            class="w-16 h-16 bg-primary/10 border border-primary/20 rounded-lg flex items-center justify-center mx-auto mb-4"
+          >
+            <svg
+              class="w-8 h-8 text-primary"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-foreground mb-2">
+            Mudah Digunakan
+          </h3>
+          <p class="text-muted-foreground">
+            Interface yang bersih dan mudah digunakan di semua perangkat
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Access Section -->
+  <section class="py-16 px-4 sm:px-6 lg:px-8">
+    <div class="container mx-auto">
+      <h2 class="text-3xl font-bold text-center text-foreground mb-12">
+        Akses Cepat
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <a href="/quran" class="group block">
+          <div
+            class="bg-card hover:bg-accent/50 border border-border rounded-lg p-8 transition-all duration-200 hover:shadow-md"
+          >
+            <div class="text-center">
+              <div
+                class="w-20 h-20 bg-primary/10 border border-primary/20 rounded-lg flex items-center justify-center mx-auto mb-4"
+              >
+                <svg
+                  class="w-10 h-10 text-primary"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M12 2L2 7v10c0 5.55 3.84 9.739 9 11 5.16-1.261 9-5.45 9-11V7l-10-5z"
+                  ></path>
+                </svg>
+              </div>
+              <h3
+                class="text-2xl font-semibold text-foreground group-hover:text-primary transition-colors mb-2"
+              >
+                Al-Quran
+              </h3>
+              <p class="text-muted-foreground">
+                Baca 114 surah Al-Quran dengan terjemahan dan tafsir
+              </p>
+            </div>
+          </div>
+        </a>
+
+        <a href="/hadith" class="group block">
+          <div
+            class="bg-card hover:bg-accent/50 border border-border rounded-lg p-8 transition-all duration-200 hover:shadow-md"
+          >
+            <div class="text-center">
+              <div
+                class="w-20 h-20 bg-primary/10 border border-primary/20 rounded-lg flex items-center justify-center mx-auto mb-4"
+              >
+                <svg
+                  class="w-10 h-10 text-primary"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+                  ></path>
+                </svg>
+              </div>
+              <h3
+                class="text-2xl font-semibold text-foreground group-hover:text-primary transition-colors mb-2"
+              >
+                Hadith
+              </h3>
+              <p class="text-muted-foreground">
+                Pelajari hadith-hadith shahih dengan terjemahan
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

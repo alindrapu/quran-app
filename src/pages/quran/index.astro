@@ -1,0 +1,27 @@
+---
+import Layout from "@/components/layouts/main.astro";
+import SurahCard from "@/components/common/surah-card.astro";
+import { ALQURAN_DATAS } from "@/constants/quran";
+---
+
+<Layout
+  title="Al-Quran"
+  description="Baca Al-Quran"
+  className="py-8 px-4 sm:px-6 lg:px-8"
+>
+  <div class="container mx-auto">
+    <hgroup class="mb-8">
+      <h1 class="text-3xl font-bold text-foreground mb-2">Al-Quran</h1>
+      <p class="text-muted-foreground">Pilih surah yang ingin Anda baca</p>
+    </hgroup>
+
+    <!-- Surah List -->
+    <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {
+        ALQURAN_DATAS.map((surah) => (
+          <SurahCard data={surah} href={`/quran/${surah.number}`} />
+        ))
+      }
+    </section>
+  </div>
+</Layout>

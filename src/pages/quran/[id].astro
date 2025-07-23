@@ -1,0 +1,121 @@
+---
+import Layout from "@/components/layouts/main.astro";
+import { ALQURAN_DATAS } from "@/constants/quran";
+import AyahCard from "@/components/common/ayah-card.astro";
+
+const { id } = Astro.params;
+
+export async function getStaticPaths() {
+  return ALQURAN_DATAS.map((surah) => ({
+    params: { id: surah.number },
+  }));
+}
+
+const surah = ALQURAN_DATAS.find((surah) => surah.number === id);
+if (!surah) return Astro.redirect("/quran");
+---
+
+<Layout
+  title={surah.name}
+  description={surah.name_latin}
+  className="py-8 px-4 sm:px-6 lg:px-8"
+>
+  <div class="container mx-auto max-w-4xl">
+    <!-- Navigation -->
+    <div class="mb-8">
+      <a
+        href="/quran"
+        class="inline-flex items-center text-primary hover:text-primary/80 transition-colors"
+      >
+        <svg
+          class="w-4 h-4 mr-2"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M15 19l-7-7 7-7"></path>
+        </svg>
+        Kembali ke Daftar Surah
+      </a>
+    </div>
+
+    <!-- Surah Header -->
+    <hgroup
+      class="bg-card border border-border rounded-lg p-8 mb-8 text-center"
+    >
+      <h1 class="text-4xl font-arabic text-foreground mb-2" dir="rtl">
+        {surah.name}
+      </h1>
+      <h2 class="text-2xl font-bold text-foreground mb-2">
+        {surah.name_latin}
+      </h2>
+      <p class="text-muted-foreground">
+        {surah.translations.id.name} • {surah.number_of_ayah} Ayat
+      </p>
+    </hgroup>
+
+    <!-- Ayahs -->
+    <section class="space-y-6">
+      {
+        Object.entries(surah.text).map(([ayahNumber, arabicText]) => (
+          <AyahCard
+            number={ayahNumber}
+            arabic={arabicText}
+            translation={surah.translations.id.text[ayahNumber as any]}
+            tafsir={surah.tafsir.id.kemenag.text[ayahNumber]}
+            surahNumber={surah.number}
+          />
+        ))
+      }
+    </section>
+
+    <!-- Navigation Footer -->
+    <section
+      class="flex justify-between items-center mt-12 pt-8 border-t border-border"
+    >
+      <button
+        class="inline-flex items-center px-4 py-2 text-muted-foreground hover:text-foreground transition-colors"
+      >
+        <svg
+          class="w-4 h-4 mr-2"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M15 19l-7-7 7-7"></path>
+        </svg>
+        Surah Sebelumnya
+      </button>
+
+      <span class="text-sm text-muted-foreground">
+        Surah {surah.number} dari 114
+      </span>
+
+      <button
+        class="inline-flex items-center px-4 py-2 text-muted-foreground hover:text-foreground transition-colors"
+      >
+        Surah Selanjutnya
+        <svg
+          class="w-4 h-4 ml-2"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M9 5l7 7-7 7"></path>
+        </svg>
+      </button>
+    </section>
+  </div>
+</Layout>

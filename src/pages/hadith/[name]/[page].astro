@@ -1,0 +1,95 @@
+---
+import { HADITH_DATAS } from "@/constants/hadith";
+import Layout from "@/components/layouts/main.astro";
+import HadithCard from "@/components/common/hadith-card";
+import Paginate from "@/components/common/paginate.astro";
+
+const { name, page } = Astro.params;
+const pageNumber = parseInt(page) || 1;
+
+const hadiths = HADITH_DATAS[name];
+if (!hadiths) return Astro.redirect("/hadith");
+
+const totalPages = Math.ceil(hadiths.length / 10);
+if (pageNumber < 1 || pageNumber > totalPages) {
+  return Astro.redirect(`/hadith/${name}/1`);
+}
+
+const start = (pageNumber - 1) * 10;
+const end = start + 10;
+const paginatedHadiths = hadiths.slice(start, end);
+
+export async function getStaticPaths() {
+  const paths = [];
+
+  for (const name of Object.keys(HADITH_DATAS)) {
+    const total = HADITH_DATAS[name].length;
+    const pages = Math.ceil(total / 10);
+
+    for (let i = 1; i <= pages; i++) {
+      paths.push({ params: { name, page: i.toString() } });
+    }
+  }
+
+  return paths;
+}
+---
+
+<Layout title={`Hadith ${name}`} className="py-8 px-4 sm:px-6 lg:px-8">
+  <div class="container mx-auto max-w-4xl">
+    <!-- Navigation -->
+    <div class="mb-8">
+      <a
+        href="/hadith"
+        class="inline-flex items-center text-primary hover:text-primary/80 transition-colors"
+      >
+        <svg
+          class="w-4 h-4 mr-2"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M15 19l-7-7 7-7"></path>
+        </svg>
+        Kembali ke Koleksi Hadith
+      </a>
+    </div>
+
+    <!-- Collection Header -->
+    <section class="bg-card border border-border rounded-lg p-8 mb-8">
+      <div class="text-center">
+        <h1 class="text-3xl font-bold text-foreground mb-2 capitalize">
+          {name.replaceAll("-", " ")}
+        </h1>
+
+        <div class="grid grid-cols-1 gap-4 mt-6">
+          <div class="text-center">
+            <div class="text-2xl font-bold text-primary">
+              {hadiths.length}
+            </div>
+            <div class="text-sm text-muted-foreground">Total Hadith</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hadith List -->
+    <section class="space-y-6 gap-2">
+      {
+        paginatedHadiths.map((val) => (
+          <HadithCard client:load data={val} name={name} />
+        ))
+      }
+    </section>
+
+    <Paginate
+      currentPage={Number(page)}
+      totalPages={totalPages}
+      baseUrl={`/hadith/${name}`}
+    />
+  </div>
+</Layout>

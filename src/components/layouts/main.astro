@@ -1,13 +1,26 @@
 ---
 import "@/styles/global.css";
+import type { Metadata } from "@/interfaces/global";
+import Header from "./header.astro";
+import Footer from "./footer.astro";
+import { cn } from "@/lib/utils";
+import type { WithContext, Thing } from "schema-dts";
+
+export interface Props {
+  title: string;
+  description?: string;
+  className?: string;
+  metadatas?: Metadata[];
+  schema?: WithContext<Thing> | null;
+}
+
 const {
   title,
   description = "Website Al-Quran dan Hadith",
   className,
+  metadatas = [],
+  schema = null,
 } = Astro.props;
-import Header from "./header.astro";
-import Footer from "./footer.astro";
-import { cn } from "@/lib/utils";
 ---
 
 <!doctype html>
@@ -18,6 +31,17 @@ import { cn } from "@/lib/utils";
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
     <meta name="description" content={description} />
+
+    {metadatas.map(({ tag: Tag, ...rest }) => <Tag {...rest} />)}
+    {
+      schema && (
+        <script
+          is:inline
+          type="application/ld+json"
+          set:html={JSON.stringify(schema)}
+        />
+      )
+    }
   </head>
   <body
     class="min-h-screen bg-background text-foreground transition-colors duration-300"

@@ -29,8 +29,8 @@ export default function HadithCard({ data, name }: HadithCardProps) {
       try {
         await navigator.share({
           title: `Hadith ${name} #${data.number}`,
-          text: text,
-          url: url,
+          text,
+          url,
         });
       } catch (err) {
         console.error("Error sharing:", err);

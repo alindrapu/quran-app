@@ -27,3 +27,7 @@ export interface HadithData {
   arab: string;
   id: string;
 }
+
+export interface Metadata extends Record<string, string> {
+  tag: "meta" | "link" | string;
+}

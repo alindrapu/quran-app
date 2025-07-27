@@ -2,6 +2,7 @@
 import Layout from "@/components/layouts/main.astro";
 import { ALQURAN_DATAS } from "@/constants/quran";
 import AyahCard from "@/components/common/ayah-card.astro";
+import type { WithContext, WebPage } from "schema-dts";
 
 const { id } = Astro.params;
 
@@ -16,9 +17,76 @@ if (!surah) return Astro.redirect("/quran");
 ---
 
 <Layout
-  title={surah.name}
-  description={surah.name_latin}
+  title={`${surah.name} - ${surah.name_latin}`}
+  description={`${surah.translations.id.name} - ${surah.number_of_ayah} ayat. Baca dan pahami surah ${surah.name_latin} secara lengkap dengan terjemahan dan tafsir.`}
   className="py-8 px-4 sm:px-6 lg:px-8"
+  schema={{
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: `${surah.name} (${surah.name_latin}) - Al-Qur'an`,
+    description: `${surah.translations.id.name} - ${surah.number_of_ayah} ayat. Baca dan pahami surah ${surah.name_latin} secara lengkap dengan terjemahan dan tafsir.`,
+    url: `${process.env.DOMAIN}/quran/${surah.number}`,
+    isAccessibleForFree: true,
+    accessMode: "textual",
+    inLanguage: "id",
+    keywords: `Quran, Al-Qur'an, Surah ${surah.name_latin}, Tafsir, Terjemahan, Surah ke-${surah.number}`,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${process.env.DOMAIN}/quran/${surah.number}`,
+    },
+  } as WithContext<WebPage>}
+  metadatas={[
+    {
+      tag: "meta",
+      name: "description",
+      content: `${surah.translations.id.name} - ${surah.number_of_ayah} ayat. Baca dan pahami surah ${surah.name_latin} secara lengkap dengan terjemahan dan tafsir.`,
+    },
+    {
+      tag: "meta",
+      property: "og:type",
+      content: "article",
+    },
+    {
+      tag: "meta",
+      property: "og:title",
+      content: `${surah.name} (${surah.name_latin}) - Al-Qur'an Online`,
+    },
+    {
+      tag: "meta",
+      property: "og:description",
+      content: `${surah.translations.id.name} - ${surah.number_of_ayah} ayat. Baca dan pahami surah ${surah.name_latin} secara lengkap dengan terjemahan dan tafsir.`,
+    },
+    {
+      tag: "meta",
+      property: "og:url",
+      content: `${process.env.DOMAIN}/quran/${surah.number}`,
+    },
+    {
+      tag: "meta",
+      property: "og:image:alt",
+      content: `Surah ${surah.name_latin}`,
+    },
+    {
+      tag: "meta",
+      name: "twitter:card",
+      content: "summary_large_image",
+    },
+    {
+      tag: "meta",
+      name: "twitter:title",
+      content: `${surah.name} (${surah.name_latin}) - Al-Qur'an Online`,
+    },
+    {
+      tag: "meta",
+      name: "twitter:description",
+      content: `${surah.translations.id.name} - ${surah.number_of_ayah} ayat. Baca dan pahami surah ${surah.name_latin} secara lengkap dengan terjemahan dan tafsir.`,
+    },
+    {
+      tag: "link",
+      rel: "canonical",
+      href: `${process.env.DOMAIN}/quran/${surah.number}`,
+    },
+  ]}
 >
   <div class="container mx-auto max-w-4xl">
     <!-- Navigation -->

@@ -3,6 +3,7 @@ import { HADITH_DATAS } from "@/constants/hadith";
 import Layout from "@/components/layouts/main.astro";
 import HadithCard from "@/components/common/hadith-card";
 import Paginate from "@/components/common/paginate.astro";
+import type { WithContext, WebPage } from "schema-dts";
 
 const { name, page } = Astro.params;
 const pageNumber = parseInt(page) || 1;
@@ -35,7 +36,68 @@ export async function getStaticPaths() {
 }
 ---
 
-<Layout title={`Hadith ${name}`} className="py-8 px-4 sm:px-6 lg:px-8">
+<Layout
+  title={`Hadith ${name}`}
+  className="py-8 px-4 sm:px-6 lg:px-8"
+  description={`Kumpulan hadith dari koleksi ${name.replaceAll("-", " ")}. Halaman ${pageNumber} dari ${totalPages}. Baca hadith shahih, lengkap, dan terpercaya.`}
+  metadatas={[
+    {
+      tag: "meta",
+      property: "og:type",
+      content: "article",
+    },
+    {
+      tag: "meta",
+      property: "og:title",
+      content: `Hadith ${name.replaceAll("-", " ")} - Halaman ${pageNumber}`,
+    },
+    {
+      tag: "meta",
+      property: "og:description",
+      content: `Menampilkan hadith dari koleksi ${name.replaceAll("-", " ")}. Halaman ${pageNumber} dari ${totalPages}.`,
+    },
+    {
+      tag: "meta",
+      property: "og:url",
+      content: `${process.env.DOMAIN}/hadith/${name}/${pageNumber}`,
+    },
+    {
+      tag: "meta",
+      name: "twitter:card",
+      content: "summary_large_image",
+    },
+    {
+      tag: "meta",
+      name: "twitter:title",
+      content: `Hadith ${name.replaceAll("-", " ")} - Halaman ${pageNumber}`,
+    },
+    {
+      tag: "meta",
+      name: "twitter:description",
+      content: `Menampilkan hadith dari koleksi ${name.replaceAll("-", " ")}. Halaman ${pageNumber} dari ${totalPages}.`,
+    },
+    {
+      tag: "link",
+      rel: "canonical",
+      href: `${process.env.DOMAIN}/hadith/${name}/${pageNumber}`,
+    },
+  ]}
+  schema={{
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: `Hadith ${name.replaceAll("-", " ")} - Halaman ${pageNumber}`,
+    description: `Menampilkan hadith dari koleksi ${name.replaceAll("-", " ")}. Halaman ${pageNumber} dari ${totalPages}.`,
+    url: `${process.env.DOMAIN}/hadith/${name}/${pageNumber}`,
+    isAccessibleForFree: true,
+    inLanguage: "id",
+    accessMode: "textual",
+    keywords: `Hadith, Hadits, Koleksi Hadith ${name.replaceAll("-", " ")}, Hadith halaman ${pageNumber}`,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${process.env.DOMAIN}/hadith/${name}/${pageNumber}`,
+    },
+  } as WithContext<WebPage>}
+>
   <div class="container mx-auto max-w-4xl">
     <!-- Navigation -->
     <div class="mb-8">

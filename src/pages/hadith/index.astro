@@ -2,12 +2,81 @@
 import HadithCollection from "@/components/common/hadith-collection.astro";
 import Layout from "@/components/layouts/main.astro";
 import { HADITH_DATAS } from "@/constants/hadith";
+import type { WithContext, WebPage, CreativeWorkSeries } from "schema-dts";
 ---
 
 <Layout
   title="Hadith – Koleksi Utama"
-  description="Koleksi hadith shahih dengan terjemahan"
+  description="Koleksi hadith shahih dan penting dari berbagai kitab. Lengkap dengan terjemahan bahasa Indonesia."
   className=" py-8 px-4 sm:px-6 lg:px-8"
+  metadatas={[
+    {
+      tag: "meta",
+      property: "og:type",
+      content: "website",
+    },
+    {
+      tag: "meta",
+      property: "og:title",
+      content: "Koleksi Hadith Shahih – Terjemahan Lengkap",
+    },
+    {
+      tag: "meta",
+      property: "og:description",
+      content:
+        "Kitab hadist paling otoritatif dan koleksi penting lainnya. Jelajahi hadith shahih dalam bahasa Indonesia.",
+    },
+    {
+      tag: "meta",
+      property: "og:url",
+      content: `${process.env.DOMAIN}/hadith`,
+    },
+    {
+      tag: "meta",
+      name: "twitter:card",
+      content: "summary_large_image",
+    },
+    {
+      tag: "meta",
+      name: "twitter:title",
+      content: "Koleksi Hadith Shahih – Terjemahan Lengkap",
+    },
+    {
+      tag: "meta",
+      name: "twitter:description",
+      content:
+        "Kitab hadist paling otoritatif dan koleksi penting lainnya. Jelajahi hadith shahih dalam bahasa Indonesia.",
+    },
+    {
+      tag: "link",
+      rel: "canonical",
+      href: `${process.env.DOMAIN}/hadith`,
+    },
+  ]}
+  schema={{
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: "Koleksi Hadith Shahih – Terjemahan Lengkap",
+    description:
+      "Kitab hadist paling otoritatif dan koleksi penting lainnya. Jelajahi hadith shahih dalam bahasa Indonesia.",
+    url: `${process.env.DOMAIN}/hadith`,
+    inLanguage: "id",
+    isAccessibleForFree: true,
+    accessMode: "textual",
+    keywords:
+      "Hadith, Hadits, Koleksi Hadith, Hadith Shahih, Hadith Indonesia, Terjemahan Hadits",
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${process.env.DOMAIN}/hadith`,
+    },
+    mainEntity: Object.keys(HADITH_DATAS).map<CreativeWorkSeries>((name) => ({
+      "@type": "CreativeWorkSeries",
+      name: name.replaceAll("-", " ").toUpperCase(),
+      url: `${process.env.DOMAIN}/hadith/${name}/1`,
+      inLanguage: "id",
+      isAccessibleForFree: true,
+    })),
+  } as WithContext<WebPage>}
 >
   <section class="container mx-auto">
     <hgroup class="mb-8 text-center">

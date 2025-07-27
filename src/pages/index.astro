@@ -9,6 +9,95 @@ import Layout from "@/components/layouts/main.astro";
 <Layout
   title="Al-Quran & Hadith"
   description="Baca dan pelajari Al-Quran dan Hadith dengan mudah. Dilengkapi dengan terjemahan dan tafsir dalam bahasa Indonesia."
+  metadatas={[
+    {
+      tag: "meta",
+      property: "og:type",
+      content: "website",
+    },
+    {
+      tag: "meta",
+      property: "og:title",
+      content: "Al-Quran & Hadith – Baca & Pelajari dalam Bahasa Indonesia",
+    },
+    {
+      tag: "meta",
+      property: "og:description",
+      content:
+        "Baca dan pelajari Al-Quran dan Hadith shahih dengan terjemahan serta tafsir dalam bahasa Indonesia.",
+    },
+    {
+      tag: "meta",
+      property: "og:url",
+      content: `${process.env.DOMAIN}/`,
+    },
+    {
+      tag: "meta",
+      name: "twitter:card",
+      content: "summary_large_image",
+    },
+    {
+      tag: "meta",
+      name: "twitter:title",
+      content: "Al-Quran & Hadith – Baca & Pelajari dalam Bahasa Indonesia",
+    },
+    {
+      tag: "meta",
+      name: "twitter:description",
+      content:
+        "Baca dan pelajari Al-Quran dan Hadith shahih dengan terjemahan serta tafsir dalam bahasa Indonesia.",
+    },
+    {
+      tag: "link",
+      rel: "canonical",
+      href: `${process.env.DOMAIN}/`,
+    },
+  ]}
+  schema={{
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: "Al-Quran & Hadith",
+    description:
+      "Baca dan pelajari Al-Quran dan Hadith dengan mudah. Dilengkapi dengan terjemahan dan tafsir dalam bahasa Indonesia.",
+    url: `${process.env.DOMAIN}/`,
+    inLanguage: "id",
+    isAccessibleForFree: true,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${process.env.DOMAIN}/`,
+    },
+    mainEntity: [
+      {
+        "@type": "CreativeWorkSeries",
+        name: "Al-Quran",
+        url: `${process.env.DOMAIN}/quran`,
+        description:
+          "Al-Quran 30 juz dan 114 surah dengan terjemahan dan tafsir bahasa Indonesia.",
+        inLanguage: "id",
+        isAccessibleForFree: true,
+      },
+      {
+        "@type": "CreativeWorkSeries",
+        name: "Hadith",
+        url: `${process.env.DOMAIN}/hadith`,
+        description:
+          "Koleksi hadith shahih dari berbagai kitab utama, lengkap dengan terjemahan bahasa Indonesia.",
+        inLanguage: "id",
+        isAccessibleForFree: true,
+      },
+    ],
+    keywords: [
+      "Al-Quran",
+      "Hadith",
+      "Hadits",
+      "Tafsir",
+      "Terjemahan Al-Quran",
+      "Hadith Indonesia",
+      "Belajar Islam",
+      "Quran Online",
+      "Hadits Shahih",
+    ].join(", "),
+  }}
 >
   <section class="py-20 px-4 sm:px-6 lg:px-8">
     <div class="container mx-auto text-center">

@@ -45,17 +45,23 @@ const { data, name } = Astro.props;
   </CardHeader>
 
   {/* Content */}
-  <CardContent className="space-y-4">
-    {/* Arabic Text */}
+  <CardContent
+    className="space-y-4 text-base sm:text-lg leading-relaxed sm:leading-loose"
+  >
     <div class="text-right" dir="rtl">
-      <p class="text-lg leading-loose font-amiri text-foreground">
+      <p
+        class="text-xl sm:text-2xl leading-loose font-amiri text-foreground tracking-wide border-b border-border pb-4"
+      >
         {data.arab}
       </p>
     </div>
 
-    {/* Translation */}
     <div class="border-t border-border pt-4">
-      <p class="text-muted-foreground leading-relaxed">{data.id}</p>
+      <p
+        class="text-muted-foreground text-sm sm:text-base leading-relaxed sm:leading-loose border-b border-border pb-4"
+      >
+        {data.id}
+      </p>
     </div>
   </CardContent>
 </Card>

@@ -5,6 +5,7 @@ import Header from "./header.astro";
 import Footer from "./footer.astro";
 import { cn } from "@/lib/utils";
 import type { WithContext, Thing } from "schema-dts";
+import { Toaster } from "@/components/ui/sonner";
 
 export interface Props {
   title: string;
@@ -58,5 +59,6 @@ const {
       </main>
       <Footer />
     </div>
+    <Toaster client:only />
   </body>
 </html>

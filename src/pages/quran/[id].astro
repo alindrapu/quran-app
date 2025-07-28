@@ -136,6 +136,7 @@ if (!surah) return Astro.redirect("/quran");
             translation={surah.translations.id.text[ayahNumber as any]}
             tafsir={surah.tafsir.id.kemenag.text[ayahNumber]}
             surahNumber={surah.number}
+            surahName={surah.name}
           />
         ))
       }

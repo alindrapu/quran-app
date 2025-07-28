@@ -1,7 +1,7 @@
 ---
 import { HADITH_DATAS } from "@/constants/hadith";
 import Layout from "@/components/layouts/main.astro";
-import HadithCard from "@/components/common/hadith-card";
+import HadithCard from "@/components/common/hadith-card.astro";
 import Paginate from "@/components/common/paginate.astro";
 import type { WithContext, WebPage } from "schema-dts";
 
@@ -141,11 +141,7 @@ export async function getStaticPaths() {
 
     <!-- Hadith List -->
     <section class="space-y-6 gap-2">
-      {
-        paginatedHadiths.map((val) => (
-          <HadithCard client:load data={val} name={name} />
-        ))
-      }
+      {paginatedHadiths.map((val) => <HadithCard data={val} name={name} />)}
     </section>
 
     <Paginate

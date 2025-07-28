@@ -1,5 +1,6 @@
 ---
 import type { PreviewQuranData } from "@/interfaces/global";
+import { Card, CardContent, CardDescription, CardTitle } from "../ui/card";
 
 export interface Props {
   data: PreviewQuranData;
@@ -12,12 +13,10 @@ const {
 } = Astro.props;
 ---
 
-<article class="group">
+<Card as="article" className="group">
   <a href={href} class="block">
-    <div
-      class="bg-card hover:bg-accent/50 border border-border rounded-lg p-6 transition-all duration-200 hover:shadow-md"
-    >
-      <div class="flex items-center justify-between">
+    <CardContent className="p-2 transition-all duration-200">
+      <hgroup class="flex items-center justify-between">
         <div class="flex items-center space-x-4">
           <div
             class="w-12 h-12 bg-primary/10 border border-primary/20 rounded-lg flex items-center justify-center"
@@ -25,18 +24,21 @@ const {
             <span class="text-primary font-semibold">{number}</span>
           </div>
           <div>
-            <h3
-              class="text-lg font-semibold text-foreground group-hover:text-primary transition-colors"
+            <CardTitle
+              as="h3"
+              className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors"
             >
               {name_latin}
-            </h3>
-            <p class="text-sm text-muted-foreground">{number_of_ayah} ayat</p>
+            </CardTitle>
+            <CardDescription as="p" className="text-sm text-muted-foreground"
+              >{number_of_ayah} ayat</CardDescription
+            >
           </div>
         </div>
         <div class="text-right">
           <p class="text-2xl font-amiri text-foreground" dir="rtl">{name}</p>
         </div>
-      </div>
-    </div>
+      </hgroup>
+    </CardContent>
   </a>
-</article>
+</Card>

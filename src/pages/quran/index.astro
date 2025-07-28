@@ -6,8 +6,8 @@ import type { WithContext, WebPage, CreativeWork } from "schema-dts";
 ---
 
 <Layout
-  title="Al-Quran"
-  description="Baca Al-Quran"
+  title="Baca Al-Quran Online"
+  description="Baca Al-Quran dan pilih surah yang ingin Anda baca. Dilengkapi dengan terjemahan dan tafsir dalam bahasa Indonesia."
   className="py-8 px-4 sm:px-6 lg:px-8"
   schema={{
     "@context": "https://schema.org",
@@ -40,8 +40,7 @@ import type { WithContext, WebPage, CreativeWork } from "schema-dts";
     {
       tag: "meta",
       property: "og:description",
-      content:
-        "Pilih dari 114 surah Al-Qur'an lengkap dengan terjemahan dan audio.",
+      content: "Pilih dari 114 surah Al-Qur'an lengkap dengan terjemahan.",
     },
     {
       tag: "meta",
@@ -57,8 +56,7 @@ import type { WithContext, WebPage, CreativeWork } from "schema-dts";
     {
       tag: "meta",
       name: "twitter:description",
-      content:
-        "Pilih dari 114 surah Al-Qur'an lengkap dengan terjemahan dan audio.",
+      content: "Pilih dari 114 surah Al-Qur'an lengkap dengan terjemahan.",
     },
     { tag: "link", rel: "canonical", href: `${process.env.DOMAIN}/quran` },
   ]}

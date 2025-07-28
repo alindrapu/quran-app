@@ -79,7 +79,7 @@ export default function HadithCard({ data, name }: HadithCardProps) {
       <div className="space-y-4">
         {/* Arabic Text */}
         <div className="text-right" dir="rtl">
-          <p className="text-lg leading-loose font-arabic text-foreground">
+          <p className="text-lg leading-loose font-amiri text-foreground">
             {data.arab}
           </p>
         </div>

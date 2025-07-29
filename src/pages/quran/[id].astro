@@ -149,19 +149,26 @@ if (!surah) return Astro.redirect("/quran");
       <button
         class="inline-flex items-center px-4 py-2 text-muted-foreground hover:text-foreground transition-colors"
       >
-        <svg
-          class="w-4 h-4 mr-2"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
+        <a
+          class="inline-flex items-center"
+          href={Number(surah.number) === 1
+            ? "#"
+            : `/quran/${Number(surah.number) - 1}`}
         >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M15 19l-7-7 7-7"></path>
-        </svg>
-        Surah Sebelumnya
+          <svg
+            class="w-4 h-4 mr-2"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M15 19l-7-7 7-7"></path>
+          </svg>
+          Surah Sebelumnya
+        </a>
       </button>
 
       <span class="text-sm text-muted-foreground">
@@ -171,19 +178,26 @@ if (!surah) return Astro.redirect("/quran");
       <button
         class="inline-flex items-center px-4 py-2 text-muted-foreground hover:text-foreground transition-colors"
       >
-        Surah Selanjutnya
-        <svg
-          class="w-4 h-4 ml-2"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
+        <a
+          class="inline-flex items-center"
+          href={Number(surah.number) === 114
+            ? "#"
+            : `/quran/${Number(surah.number) + 1}`}
         >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M9 5l7 7-7 7"></path>
-        </svg>
+          Surah Selanjutnya
+          <svg
+            class="w-4 h-4 ml-2"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9 5l7 7-7 7"></path>
+          </svg>
+        </a>
       </button>
     </section>
   </div>

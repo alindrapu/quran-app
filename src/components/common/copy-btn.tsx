@@ -43,6 +43,7 @@ function CopyBtn({ className, textToCopy, disabled, ...props }: CopyBtnProps) {
       )}
       onClick={onClickHandler}
       disabled={copied || !textToCopy || !navigator.clipboard || disabled}
+      title="Copy"
     >
       {copied ? (
         <>

@@ -77,7 +77,7 @@ if (!sirah) return Astro.redirect("/sirah");
     articleBody: sirah.sirah,
   } as WithContext<Article>}
 >
-  <div class="container mx-auto">
+  <div class="container mx-auto mb-8">
     <div class="mb-8">
       <a
         href="/sirah"
@@ -154,7 +154,7 @@ if (!sirah) return Astro.redirect("/sirah");
 
         <!-- Main Content -->
       </CardHeader>
-      <CardContent className="prose prose-lg max-w-none p-8 mb-8">
+      <CardContent className="prose prose-lg max-w-none p-8">
         <Markdown content={sirah.sirah} client:load />
       </CardContent>
     </Card>

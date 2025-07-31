@@ -1,12 +1,7 @@
 import { useState } from "react";
-import { Menu, X, Home, Book, BookOpen } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "../ui/button";
-
-const menuItems = [
-  { href: "/", label: "Beranda", icon: Home },
-  { href: "/quran", label: "Al-Quran", icon: Book },
-  { href: "/hadith", label: "Hadith", icon: BookOpen },
-];
+import { NAVIGATION } from "@/constants/navigation";
 
 export default function MobileMenu() {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,7 +26,7 @@ export default function MobileMenu() {
           <div className="fixed top-16 left-0 right-0 bg-card border-b border-border z-50 shadow-lg">
             <nav className="container mx-auto px-4 py-4">
               <div className="space-y-2">
-                {menuItems.map(({ href, label, icon: Icon }) => (
+                {NAVIGATION.map(({ href, label, icon: Icon }) => (
                   <a
                     key={href}
                     href={href}

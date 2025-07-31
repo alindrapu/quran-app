@@ -23,7 +23,12 @@ const { name } = Astro.props;
       className="text-2xl font-amiri text-foreground mb-3"
       dir="rtl"
     >
-      <a class="inline-block" href={`/hadith/${name}`}> Lihat Hadith </a>
+      <a
+        class="inline-block text-emerald-600 hover:text-emerald-700"
+        href={`/hadith/${name}`}
+      >
+        Lihat Hadith
+      </a>
     </Button>
   </CardContent>
 </Card>

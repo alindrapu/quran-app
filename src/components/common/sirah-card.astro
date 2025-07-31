@@ -1,0 +1,50 @@
+---
+import type { SirahData } from "@/interfaces/global";
+import { Card, CardContent, CardDescription, CardTitle } from "../ui/card";
+
+export interface Props {
+  data: SirahData;
+}
+
+const { data } = Astro.props;
+---
+
+<Card
+  as="article"
+  className="rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden"
+>
+  <CardContent className="p-6 flex flex-col h-full">
+    <div class="flex items-center justify-between mb-3">
+      <span class="text-sm font-medium px-3 py-1 rounded-full">
+        {data.year}
+      </span>
+    </div>
+
+    <CardTitle as="h3" className="text-xl font-bold mb-3 line-clamp-2">
+      {data.title}
+    </CardTitle>
+
+    <CardDescription className="mb-4 line-clamp-3"
+      >{data.description}</CardDescription
+    >
+
+    <a
+      href={`/sirah/${data.page}`}
+      class="inline-flex items-center text-emerald-600 hover:text-emerald-700 font-medium transition-colors mt-auto"
+    >
+      Baca Selengkapnya
+      <svg
+        class="ml-2 w-4 h-4"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-line-cap="round"
+          stroke-line-join="round"
+          stroke-width={2}
+          d="M9 5l7 7-7 7"></path>
+      </svg>
+    </a>
+  </CardContent>
+</Card>

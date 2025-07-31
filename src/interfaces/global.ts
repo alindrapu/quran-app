@@ -31,3 +31,11 @@ export interface HadithData {
 export interface Metadata extends Record<string, string> {
   tag: "meta" | "link" | string;
 }
+
+export interface SirahData {
+  title: string;
+  description: string;
+  sirah: string;
+  year: string;
+  page: number;
+}

@@ -48,17 +48,22 @@ const {
         />
       )
     }
-    
+
     <!-- Prevent flashing light theme when set to dark mode -->
     <script is:inline>
-      const getInitialTheme = () => {
-        const savedTheme = localStorage.getItem("theme");
-        const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-        return savedTheme || systemTheme;
-      };
-      
-      const theme = getInitialTheme();
-      document.documentElement.classList.toggle("dark", theme === "dark");
+      (() => {
+        const getInitialTheme = () => {
+          const savedTheme = localStorage.getItem("theme");
+          const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
+            .matches
+            ? "dark"
+            : "light";
+          return savedTheme || systemTheme;
+        };
+
+        const theme = getInitialTheme();
+        document.documentElement.classList.toggle("dark", theme === "dark");
+      })();
     </script>
   </head>
   <body

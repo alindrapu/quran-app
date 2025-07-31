@@ -1,0 +1,78 @@
+---
+import SirahCard from "@/components/common/sirah-card.astro";
+import Layout from "@/components/layouts/main.astro";
+import { SIRAH_DATAS } from "@/constants/sirah";
+import type {
+  WithContext,
+  CollectionPage,
+  CreativeWorkSeries,
+} from "schema-dts";
+---
+
+<Layout
+  title="Baca Sirah Online"
+  description="Koleksi lengkap kisah-kisah bersejarah dalam Islam yang penuh hikmah dan pelajaran berharga."
+  metadatas={[
+    {
+      tag: "meta",
+      name: "keywords",
+      content:
+        "sirah, kisah nabi, sejarah islam, kisah sahabat, kisah teladan, islamic history, kisah rasul",
+    },
+    { tag: "meta", property: "og:type", content: "website" },
+    { tag: "meta", property: "og:title", content: "Baca Sirah Online" },
+    {
+      tag: "meta",
+      property: "og:description",
+      content:
+        "Koleksi lengkap kisah-kisah bersejarah dalam Islam yang penuh hikmah dan pelajaran berharga.",
+    },
+    { tag: "meta", property: "og:url", content: `${process.env.DOMAIN}/sirah` },
+    { tag: "meta", name: "twitter:card", content: "summary_large_image" },
+    { tag: "meta", name: "twitter:title", content: "Baca Sirah Online" },
+    {
+      tag: "meta",
+      name: "twitter:description",
+      content:
+        "Kisah-kisah inspiratif tentang Rasulullah, sahabat, dan tokoh Islam.",
+    },
+    {
+      tag: "link",
+      rel: "canonical",
+      href: `${process.env.DOMAIN}/sirah`,
+    },
+  ]}
+  schema={{
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "Baca Sirah Online",
+    description:
+      "Koleksi lengkap kisah-kisah bersejarah dalam Islam yang penuh hikmah dan pelajaran berharga.",
+    url: `${process.env.DOMAIN}/sirah`,
+    mainEntity: SIRAH_DATAS.map<CreativeWorkSeries>((val) => ({
+      "@type": "CreativeWorkSeries",
+      name: val.title,
+      description: val.description,
+      url: `${process.env.DOMAIN}/sirah/${val.page}`,
+      position: val.page,
+    })),
+  } as WithContext<CollectionPage>}
+>
+  <div class="container mx-auto">
+    <hgroup class="text-center mb-12">
+      <h1 class="text-4xl font-bold text-foreground mb-4">
+        Daftar Kisah Sirah
+      </h1>
+      <p class="text-xl text-muted-foreground max-w-3xl mx-auto">
+        Koleksi lengkap kisah-kisah bersejarah dalam Islam yang penuh hikmah dan
+        pelajaran berharga.
+      </p>
+    </hgroup>
+
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6 mb-8"
+    >
+      {SIRAH_DATAS.map((val) => <SirahCard data={val} />)}
+    </div>
+  </div>
+</Layout>

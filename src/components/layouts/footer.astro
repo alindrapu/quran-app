@@ -1,5 +1,6 @@
 ---
 import { NAVIGATION } from "@/constants/navigation";
+import Contributors from "../common/contributors";
 ---
 
 <footer class="border-t border-border bg-muted/50">
@@ -31,13 +32,16 @@ import { NAVIGATION } from "@/constants/navigation";
         </ul>
       </hgroup>
 
-      <hgroup>
-        <h3 class="text-lg font-semibold mb-4">Kontak</h3>
-        <p class="text-sm text-muted-foreground">
-          Untuk saran dan masukan, silakan hubungi kami melalui email atau media
-          sosial.
-        </p>
-      </hgroup>
+      <div class="gap-4 space-y-4">
+        <hgroup>
+          <h3 class="text-lg font-semibold mb-4">Kontak</h3>
+          <p class="text-sm text-muted-foreground">
+            Untuk saran dan masukan, silakan hubungi kami melalui email atau
+            media sosial.
+          </p>
+        </hgroup>
+        <Contributors client:load />
+      </div>
     </div>
 
     <div

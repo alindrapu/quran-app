@@ -1,5 +1,11 @@
 import type { Contributor } from "@/interfaces/global";
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "../ui/card";
 import { memo, useEffect, useState, useTransition } from "react";
 import { Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -66,6 +72,21 @@ function Contributor() {
           )}
         </div>
       </CardContent>
+      <CardFooter className="flex justify-center items-center">
+        <div className="flex flex-col justify-center items-center space-y-2">
+          <span className="text-foreground">
+            {contributors.length} kontributor
+          </span>
+          <a
+            href="https://github.com/LordFeexz/quran-app"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-foreground hover:text-emerald-600 transition-colors"
+          >
+            Ikut berkontribusi?
+          </a>
+        </div>
+      </CardFooter>
     </Card>
   );
 }
